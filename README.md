@@ -28,8 +28,6 @@ sudo node --max-old-space-size=4000 1_extractCode.js --repoDir=/destination/for/
 node 2_countTop1000Tokens.js
 
 node 3_transformData.js --output=/destination/for/data/
+
+node 4_groupData.js --data=/destination/for/data/processed-data.csv --output=/destination/for/data/
 ```
-
-
-// remove deletion code, re run token count on original data
-// will create a large data set.
