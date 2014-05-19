@@ -1,0 +1,27 @@
+{
+  "name": "languageStatistics",
+  "version": "0.0.1",
+  "description": "Statistics on tokens in programming language files",
+  "main": "1_extractCode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Statistics",
+    "Programming"
+  ],
+  "author": "Liam Kaufman <liam.kaufman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.2.0",
+    "csv": "^0.3.7",
+    "glob": "^3.2.9",
+    "istextorbinary": "^1.0.0",
+    "js-yaml": "^3.0.2",
+    "octonode": "^0.6.2",
+    "q": "^1.0.1",
+    "redis": "^0.10.2",
+    "request": "^2.35.0",
+    "shebang": "0.0.1"
+  }
+}
