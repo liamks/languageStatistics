@@ -13,11 +13,13 @@
   "author": "Liam Kaufman <liam.kaufman@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "chai": "^1.9.1",
     "commander": "^2.2.0",
     "csv": "^0.3.7",
     "glob": "^3.2.9",
     "istextorbinary": "^1.0.0",
     "js-yaml": "^3.0.2",
+    "mocha": "^1.19.0",
     "octonode": "^0.6.2",
     "q": "^1.0.1",
     "redis": "^0.10.2",
