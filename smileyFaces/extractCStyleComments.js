@@ -1,54 +1,79 @@
+/*
+  This could certainly be refactored, especially 
+  since unit tests exist! - liam
+*/
+
 function extractCStyleComments(obj){
+
+  var output = {
+    comments : [],
+    code : []
+  }, i;
   this.string = obj.string;
 
   if(!obj.string || obj.string.length === 0){
-    return [];
+    return output;
   }
 
   this.length = obj.string.length;
-  this.i;
   this.token;
   this.nextToken;
   this.tokenPair;
-  this.commentString = ''
-  this.inMultiComment = false;
-  this.comments = [];
+  this.commentString = '';
+  var inMultiComment = false,
+      inComment = false;
+
+  this.codeString = '';
 
 
-
-
-  for (this.i = 0; this.i < this.length; this.i++) {
-    this.token = this.string[this.i];
-    this.nextToken = this.string[Math.min(this.i + 1, this.length - 1)];
+  for (i = 0; i < this.length; i++) {
+    this.token = this.string[i];
+    this.nextToken = this.string[Math.min(i + 1, this.length - 1)];
     this.tokenPair = this.token + this.nextToken;
 
-    if(this.tokenPair === '*/' || (this.token === '\n' && this.inComment)){
-      this.inMultiComment = false;
-      this.comments.push(this.commentString);
+    if(this.tokenPair === '*/' || (this.token === '\n' && inComment)){
+      this.commentString && output.comments.push(this.commentString);
       this.commentString = '';
 
-      if(!this.inComment){
+      inComment = false;
+      if(inMultiComment){
         i++;
+        inMultiComment = false;
       }
-      this.inComment = false;
-    }
 
-    if(this.inComment || this.inMultiComment){
-      this.commentString += this.token;
+      continue;
     }
 
     if(this.tokenPair === '//'){
-      this.inComment = true;
+      inComment = true;
+      this.codeString.length && output.code.push(this.codeString);
+      this.codeString = '';
       i++;
+      continue;
     }
 
     if(this.tokenPair === '/*'){
-      this.inMultiComment = true;
+      inMultiComment = true;
+      this.codeString.length && output.code.push(this.codeString);
+      this.codeString = '';
       i++;
+      continue;
     }
+
+    if(inComment || inMultiComment){
+      this.commentString += this.token;
+    }else{
+      this.codeString += this.token;
+    } 
   };
 
-  return this.comments;
+    if(inComment || inMultiComment){
+      this.commentString && output.comments.push(this.commentString);
+    }else{
+      this.codeString.length && output.code.push(this.codeString);
+    } 
+
+  return output;
 }
 
 
