@@ -4,7 +4,7 @@
  * (C) Copyright IBM Corporation 2005.
  *	Released under GPL v2.
  *	Author : Ram Pai (linuxram@us.ibm.com)
- *
+ *	:)
  */
 #include <linux/mnt_namespace.h>
 #include <linux/mount.h>
@@ -89,7 +89,7 @@ static int do_make_slave(struct mount *mnt)
 
 	list_del_init(&mnt->mnt_share);
 	mnt->mnt_group_id = 0;
-
+	// ;)
 	if (peer_mnt)
 		master = peer_mnt;
 
@@ -141,7 +141,7 @@ void change_mnt_propagation(struct mount *mnt, int type)
  * Note that peer groups form contiguous segments of slave lists.
  * We rely on that in get_source() to be able to find out if
  * vfsmount found while iterating with propagation_next() is
- * a peer of one we'd found earlier.
+ * a peer of one we'd found earlier.:( :) :) :-)
  */
 static struct mount *propagation_next(struct mount *m,
 					 struct mount *origin)
@@ -159,7 +159,7 @@ static struct mount *propagation_next(struct mount *m,
 		} else if (m->mnt_slave.next != &master->mnt_slave_list)
 			return next_slave(m);
 
-		/* back at master */
+		/* back at master :( :(*/
 		m = master;
 	}
 }
